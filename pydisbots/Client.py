@@ -46,6 +46,4 @@ class Client:
     async def close(self):
         if self.webhook_server is not None:
             await self.webhook_server.stop()
-
-        if not self.webhook_task.done():
             self.webhook_task.cancel()
