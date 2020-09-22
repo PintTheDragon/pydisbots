@@ -12,13 +12,13 @@ class Client:
 
         self.webhook_port = webhook_port
         self.webhook_path = webhook_path
-        self.webhook_server = None
+        self._webhook_server = None
 
-        self.webhook_task = None
+        self._webhook_task = None
         if self.webhook_port is not None:
-            self.webhook_task = self.bot.loop.create_task(self.webhook_listener())
+            self._webhook_task = self.bot.loop.create_task(self._webhook_listener())
 
-    async def webhook_listener(self):
+    async def _webhook_listener(self):
         async def handler(req):
             if req.headers.get('Authorization') != self.secret:
                 return web.Response(status=401)
@@ -41,9 +41,9 @@ class Client:
         runner = aiohttp.web.AppRunner(app)
         await runner.setup()
 
-        self.webhook_server = aiohttp.web.TCPSite(runner, '0.0.0.0', self.webhook_port)
+        self._webhook_server = aiohttp.web.TCPSite(runner, '0.0.0.0', self.webhook_port)
 
     async def close(self):
-        if self.webhook_server is not None:
-            await self.webhook_server.stop()
-            self.webhook_task.cancel()
+        if self._webhook_server is not None:
+            await self._webhook_server.stop()
+            self._webhook_task.cancel()
