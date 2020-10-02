@@ -68,13 +68,16 @@ class Client:
     async def fetch_bot(self, bot: Union[int, str]):
         try:
             resp = await self.ses.get(f'{base_url}/api/bot/{bot}')
+        except Exception as e:
+            raise APIError(e)
 
-            if resp.status == 400:
-                raise BotNotFound(bot)
+        if resp.status == 404:
+            raise BotNotFound(bot)
 
-            if resp.status != 200:
-                raise APIError(f'Status is not 200 OK (Status was {resp.status})')
+        if resp.status != 200:
+            raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
+        try:
             data = cj.classify(await resp.json())
         except Exception as e:
             raise APIError(e)
@@ -84,13 +87,16 @@ class Client:
     async def fetch_user_bots(self, uid: int):
         try:
             resp = await self.ses.get(f'{base_url}/api/user/{uid}/bots')
+        except Exception as e:
+            raise APIError(e)
 
-            if resp.status == 400:
-                raise UserNotFound(uid)
+        if resp.status == 404:
+            raise UserNotFound(uid)
 
-            if resp.status != 200:
-                raise APIError(f'Status is not 200 OK (Status was {resp.status})')
+        if resp.status != 200:
+            raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
+        try:
             data = cj.classify(await resp.json())
         except Exception as e:
             raise APIError(e)
