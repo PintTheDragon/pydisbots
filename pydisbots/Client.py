@@ -9,7 +9,7 @@ from .Exceptions import *
 base_url = 'https://disbots.gg'
 
 
-class DisbotsClient:
+class Client:
     def __init__(self, bot: discord.Client, secret: str, *, autopost_stats: bool = False, webhook_port: int = None, webhook_path: str = '/disbots_hook'):
         self.bot = bot
 
