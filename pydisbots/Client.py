@@ -74,6 +74,9 @@ class Client:
         if resp.status == 404:
             raise BotNotFound(bot)
 
+        if resp.status == 400:
+            raise InvalidBot(bot)
+
         if resp.status != 200:
             raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
@@ -92,6 +95,9 @@ class Client:
 
         if resp.status == 404:
             raise UserNotFound(uid)
+
+        if resp.status == 400:
+            raise InvalidUser(uid)
 
         if resp.status != 200:
             raise APIError(f'Status is not 200 OK (Status was {resp.status})')
