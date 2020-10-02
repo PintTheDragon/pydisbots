@@ -80,6 +80,9 @@ class Client:
         except Exception as e:
             raise APIError(e)
 
+    async def post_guild_count(self):
+        print('This hasn\'t been implemented yet!')
+
     async def close(self):
         if self._webhook_server is not None:
             await self._webhook_server.stop()
