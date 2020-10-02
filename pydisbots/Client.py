@@ -1,12 +1,19 @@
+from typing import Union
 import classyjson as cj
 import asyncio
 import aiohttp
 import discord
 
+from .Exceptions import *
+
+base_url = 'https://disbots.gg'
+
 
 class Client:
     def __init__(self, bot: discord.Client, secret: str, webhook_port: int = None, webhook_path: str = '/disbots_hook'):
         self.bot = bot
+
+        self.ses = aiohttp.ClientSession()
 
         self.secret = secret
 
@@ -42,6 +49,22 @@ class Client:
         await runner.setup()
 
         self._webhook_server = aiohttp.web.TCPSite(runner, '0.0.0.0', self.webhook_port)
+
+    async def fetch_bot(self, bot: Union[int, str]):
+        try:
+            resp = await self.ses.get(f'{base_url}/api/bot/{bot}')
+
+            if resp.status == 400:
+                raise BotNotFound(bot)
+
+            if resp.status != 200:
+                raise APIError('Status is not 200 OK')
+
+            data = cj.classify(await resp.json())
+        except Exception as e:
+            raise APIError(e)
+
+        return data
 
     async def close(self):
         if self._webhook_server is not None:
