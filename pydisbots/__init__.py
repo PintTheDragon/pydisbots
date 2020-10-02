@@ -1,2 +1,2 @@
-from .Client import Client
+from .Client import DisbotsClient
 from .Exceptions import *
