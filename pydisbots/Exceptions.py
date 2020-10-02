@@ -4,18 +4,18 @@ class APIError(Exception):
         self.debug = debug
 
     def __str__(self):
-        return f'An exception with the API occurred - Debug: {debug}'
+        return f'An exception with the API occurred - Debug: {self.debug}'
 
 class BotNotFound(Exception):
     def __init__(self, bot):
-        self.uid = uid
+        self.bot = bot
 
     def __str__(self):
-        return f'404 Bot {bot} not found'
+        return f'404 Bot {self.bot} not found'
 
 class UserNotFound(Exception):
     def __init__(self, uid: int):
         self.uid = uid
 
     def __str__(self):
-        return f'404 User {uid} not found'
+        return f'404 User {self.uid} not found'
