@@ -10,7 +10,7 @@ base_url = 'https://disbots.gg'
 
 
 class Client:
-    def __init__(self, bot: discord.Client, secret: str, webhook_port: int = None, webhook_path: str = '/disbots_hook'):
+    def __init__(self, bot: discord.Client, *, secret: str, autopost_stats: bool = False, webhook_port: int = None, webhook_path: str = '/disbots_hook'):
         self.bot = bot
 
         self.ses = aiohttp.ClientSession()
@@ -23,7 +23,10 @@ class Client:
 
         self._webhook_task = None
         if self.webhook_port is not None:
-            self._webhook_task = self.bot.loop.create_task(self._webhook_listener())
+            self._webhook_task = bot.loop.create_task(self._webhook_listener())
+
+        if autopost_stats:
+            self._autopost_task = bot.loop.create_task(self._autopost_stats())
 
     async def _webhook_listener(self):
         async def handler(req):
@@ -49,6 +52,18 @@ class Client:
         await runner.setup()
 
         self._webhook_server = aiohttp.web.TCPSite(runner, '0.0.0.0', self.webhook_port)
+
+    async def _autopost_stats(self):
+        await self.bot.wait_until_ready()
+
+        while not self.bot.closed:
+            try:
+                await self.post_guild_count()
+            except Exception as e:
+                print('Exception occured in stats autoposting', e)
+
+            await asyncio.sleep(1800)
+
 
     async def fetch_bot(self, bot: Union[int, str]):
         try:
@@ -86,4 +101,6 @@ class Client:
     async def close(self):
         if self._webhook_server is not None:
             await self._webhook_server.stop()
+
             self._webhook_task.cancel()
+            self._autopost_task.cancel()
