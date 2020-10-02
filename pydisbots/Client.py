@@ -66,6 +66,20 @@ class Client:
 
         return data
 
+    async def fetch_user_bots(self, uid: int):
+        try:
+            resp = await self.ses.get(f'{base_url}/api/user/{uid}/bots')
+
+            if resp.status == 400:
+                raise UserNotFound(uid)
+
+            if resp.status != 200:
+                raise APIError('Status is not 200 OK')
+
+            data = cj.classify(await resp.json())
+        except Exception as e:
+            raise APIError(e)
+
     async def close(self):
         if self._webhook_server is not None:
             await self._webhook_server.stop()
