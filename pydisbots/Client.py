@@ -73,7 +73,7 @@ class Client:
                 raise BotNotFound(bot)
 
             if resp.status != 200:
-                raise APIError('Status is not 200 OK')
+                raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
             data = cj.classify(await resp.json())
         except Exception as e:
@@ -89,7 +89,7 @@ class Client:
                 raise UserNotFound(uid)
 
             if resp.status != 200:
-                raise APIError('Status is not 200 OK')
+                raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
             data = cj.classify(await resp.json())
         except Exception as e:
