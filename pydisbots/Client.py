@@ -95,6 +95,8 @@ class Client:
         except Exception as e:
             raise APIError(e)
 
+        return data
+
     async def post_guild_count(self):
         print('This hasn\'t been implemented yet!')
 
