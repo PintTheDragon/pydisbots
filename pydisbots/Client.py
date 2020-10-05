@@ -110,12 +110,11 @@ class Client:
         return data
 
     async def post_guild_count(self):
+        headers = {'Authorization': self.secret}
+        data = {'servers': str(len(self.bot.guilds))}
+
         try:
-            await self.ses.put(
-                f'{base_url}/api/stats',
-                headers={'Authorization': self.secret},
-                data={'servers': str(len(self.bot.guilds))}
-            )
+            await self.ses.put(f'{base_url}/api/stats', headers=headers, data=data)
         except Exception as e:
             raise APIError(e)
 
