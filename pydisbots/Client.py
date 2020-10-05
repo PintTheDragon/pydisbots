@@ -60,7 +60,7 @@ class Client:
             try:
                 await self.post_guild_count()
             except Exception as e:
-                print('Exception occured in stats autoposting', e)
+                print('Exception occured in stats autoposting:', e)
 
             await asyncio.sleep(1800)
 
@@ -110,7 +110,20 @@ class Client:
         return data
 
     async def post_guild_count(self):
-        print('This hasn\'t been implemented yet!')
+        try:
+            await self.ses.put(
+                f'{base_url}/api/stats',
+                headers={'Authorization': self.secret},
+                data={'servers': str(len(self.bot.guilds))}
+            )
+        except Exception as e:
+            raise APIError(e)
+
+        if resp.status == 401:
+            raise UnauthorizedError
+
+        if resp.status != 200:
+            raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
     async def close(self):
         if self._webhook_server is not None:
