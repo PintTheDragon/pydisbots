@@ -33,3 +33,7 @@ class InvalidUser(Exception):
 
     def __str__(self):
         return f'User {self.uid} is invalid'
+
+class UnauthorizedError(Exception):
+    def __str__(self):
+        return '401 Unauthorized (Your secret is invalid)'
