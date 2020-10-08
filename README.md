@@ -57,7 +57,7 @@ async def on_disbots_test(self, data):
 
 
 ## Documentation
-#### *class* pydisbots.**Client**(bot: *discord.Client*, secret: *str*, \*, autopost_stats: *bool*, webhook_port: *int*, webhook_path: *str*)
+#### *class* pydisbots.**Client**(bot: *discord.Client*, secret: *str*, \*, autopost_stats: *bool*, webhook_port: *int*, webhook_path: *str*, verbose: *bool*)
 * Constructor Arguments:
   * **bot**: *discord.Client* (required) Note that `discord.ext.commands.bot` is a subclass of a `discord.Client` and can also be used
   * **secret**: *str* (required) The authorization token / secret that is used when posting stats to the api and receiving a webhook request
