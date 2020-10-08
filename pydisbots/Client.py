@@ -131,7 +131,7 @@ class Client:
         data = {'servers': str(len(self.bot.guilds))}
 
         try:
-            await self.ses.put(f'{base_url}/api/stats', headers=headers, json=data)
+            resp = await self.ses.put(f'{base_url}/api/stats', headers=headers, json=data)
         except Exception as e:
             raise APIError(e)
 
