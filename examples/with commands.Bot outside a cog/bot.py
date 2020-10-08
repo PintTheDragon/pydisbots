@@ -16,4 +16,8 @@ async def on_disbots_like(self, data):
 
     print(f'User {user_id} voted for bot {bot_id}')
 
+@bot.listen()
+async def on_ready(self):
+    print('Bot is ready and connected!')
+
 bot.run('discord token')
