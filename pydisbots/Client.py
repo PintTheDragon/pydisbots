@@ -78,7 +78,6 @@ class Client:
 
             await asyncio.sleep(1800)
 
-
     async def fetch_bot(self, bot: Union[int, str]):
         try:
             resp = await self.ses.get(f'{base_url}/api/bot/{bot}')
