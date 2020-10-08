@@ -2,6 +2,9 @@ import setuptools
 
 with open('README.md', 'r') as rm:
     long_desc = rm.read()
+    
+with open('requirements.txt', 'r') as rq:
+    requirements = rq.readlines()
 
 setuptools.setup(
     name='pydisbots',
@@ -17,6 +20,6 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    install_requires=open('requirements.txt', 'r').readlines(),
+    install_requires=requirements,
     python_requires='>=3.6'
 )
