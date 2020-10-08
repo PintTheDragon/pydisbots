@@ -71,7 +71,7 @@ class Client:
             try:
                 await self.post_guild_count()
 
-                if verbose:
+                if self.verbose:
                     print('Posted guild/server count to the API.')
             except Exception as e:
                 print('Exception occured in stats autoposting:', e)
