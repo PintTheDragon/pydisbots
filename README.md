@@ -8,6 +8,7 @@
 
 ## Examples
 [Example Cog/Extension](https://github.com/disbots-gg/pydisbots/blob/master/examples/discord.py%20example%20cog/disbots.py)
+[Example Without Cogs](https://github.com/disbots-gg/pydisbots/blob/master/examples/with%20commands.Bot%20outside%20a%20cog/bot.py)
 
 ## Quick Start! (For setting up webhooks + auto-posting stats)
 * First, obtain your authorization token / secret from the edit page for your bot, remember that!
