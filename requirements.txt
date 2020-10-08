@@ -1,2 +1,3 @@
 aiohttp
 classy-json
+discord.py
