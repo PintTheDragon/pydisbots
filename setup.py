@@ -5,7 +5,7 @@ with open('README.md', 'r') as rm:
 
 setuptools.setup(
     name='pydisbots',
-    version='1.3.2',
+    version='1.3.3',
     author='Iapetus-11',
     description='An async wrapper for the disbots.gg API made in Python',
     long_description=long_desc,
