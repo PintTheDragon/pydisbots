@@ -67,7 +67,7 @@ class Client:
     async def _autopost_stats(self):
         await self.bot.wait_until_ready()
 
-        while not self.bot.closed:
+        while True:
             try:
                 await self.post_guild_count()
 
