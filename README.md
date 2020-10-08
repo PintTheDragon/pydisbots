@@ -37,21 +37,21 @@ dbc = pydisbots.Client(bot, 'secret', autopost_stats=True, webhook_port=5000, we
 * If you're using the newest version of discord.py (a commands.Bot or commands.AutoShardedBot) without cogs, you'll want to use the `@bot.listen` decorator:
 ```
 @bot.listen()
-async def on_disbots_like(self, data):
+async def on_disbots_like(data):
   print(data.user_id, ' has voted for the bot!')
 
 @bot.listen()
-async def on_disbots_test(self, data):
+async def on_disbots_test(data):
   print('This is a test! ', data)
 ```
 * If you're using a regular `discord.Client` you can use this code:
 ```
 @client.event
-async def on_disbots_like(self, data):
+async def on_disbots_like(data):
   print(data.user_id, ' has voted for the bot!')
 
 @client.event
-async def on_disbots_test(self, data):
+async def on_disbots_test(data):
   print('This is a test! ', data)
 ```
 
