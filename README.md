@@ -7,8 +7,12 @@
 - Supports webhooks in an easy to use manner
 
 ## Examples
-[Example Cog/Extension](https://github.com/disbots-gg/pydisbots/blob/master/examples/discord.py%20example%20cog/disbots.py)  
+[Example Cog/Extension](https://github.com/disbots-gg/pydisbots/blob/master/examples/discord.py%20example%20cog/disbots.py)
 [Example Without Cogs](https://github.com/disbots-gg/pydisbots/blob/master/examples/with%20commands.Bot%20outside%20a%20cog/bot.py)
+
+## Installation
+* You can install it [from PYPI](https://pypi.org/project/pydisbots) using `python3 -m pip install -U pydisbots` or `py -m pip install -U pydisbots` depending on what platform you're on.
+* Alternatively, you can clone this repository and run `python3 -m pip install .` or `py -m pip install .` in the folder in which the repository resides.
 
 ## Quick Start! (For setting up webhooks + auto-posting stats)
 * First, obtain your authorization token from the edit page for your bot!
