@@ -6,6 +6,7 @@ class Disbots(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+        # setup our client
         self.dbc = DisbotsClient(bot, 'secret', autopost_stats=True, webhook_port=5000, webhook_path='/disbots_hook')
 
     @commands.Cog.listener()
