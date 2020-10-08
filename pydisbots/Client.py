@@ -10,8 +10,10 @@ base_url = 'https://disbots.gg'
 
 
 class Client:
-    def __init__(self, bot: discord.Client, secret: str, *, autopost_stats: bool = False, webhook_port: int = 80, webhook_path: str = '/disbots_hook'):
+    def __init__(self, bot: discord.Client, secret: str, *, autopost_stats: bool = False, webhook_port: int = None, webhook_path: str = '/disbots_hook', verbose: bool = False):
         self.bot = bot
+
+        self.verbose = verbose
 
         self.ses = aiohttp.ClientSession()
 
@@ -25,8 +27,14 @@ class Client:
         if self.webhook_port is not None:
             self._webhook_task = bot.loop.create_task(self._webhook_listener())
 
+            if verbose:
+                print('Started webhook server.')
+
         if autopost_stats:
             self._autopost_task = bot.loop.create_task(self._autopost_stats())
+
+            if verbose:
+                print('Started auto-posting stats loop.')
 
     async def _webhook_listener(self):
         async def handler(req):
@@ -53,12 +61,18 @@ class Client:
 
         self._webhook_server = aiohttp.web.TCPSite(runner, '0.0.0.0', self.webhook_port)
 
+        if self.verbose:
+            print('Webhooks finished setting up')
+
     async def _autopost_stats(self):
         await self.bot.wait_until_ready()
 
         while not self.bot.closed:
             try:
                 await self.post_guild_count()
+
+                if verbose:
+                    print('Posted guild/server count to the API.')
             except Exception as e:
                 print('Exception occured in stats autoposting:', e)
 
@@ -110,6 +124,9 @@ class Client:
         return data
 
     async def post_guild_count(self):
+        if self.verbose:
+            print('Posting stats to the API')
+
         headers = {'Authorization': self.secret}
         data = {'servers': str(len(self.bot.guilds))}
 
@@ -124,9 +141,18 @@ class Client:
         if resp.status != 200:
             raise APIError(f'Status is not 200 OK (Status was {resp.status})')
 
+        if self.verbose:
+            print('Finished posting stats to the API')
+
     async def close(self):
+        if self.verbose:
+            print('Closing.')
+
         if self._webhook_server is not None:
             await self._webhook_server.stop()
 
             self._webhook_task.cancel()
             self._autopost_task.cancel()
+
+        if self.verbose:
+            print('Closed.')
