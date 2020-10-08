@@ -17,5 +17,6 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
+    install_requires=open('requirements.txt', 'r').readlines(),
     python_requires='>=3.6'
 )
