@@ -19,7 +19,7 @@
 * While you're still on the site, type in the URL you want disbots.gg to send the data to when someone likes your bot! This should look something like `protocol://youripgoeshere:port/disbots_hook` or `protocol://example.com:port/disbots_hook`
 * Now lets get to the programming part! In your code create a `pydisbots.Client` like this:
 ```
-dbc = pydisbots.Client(bot, 'YOUR_AUTH_TOKEN', True, 5000, '/disbots_hook')
+dbc = pydisbots.Client(bot, 'secret', autopost_stats=True, webhook_port=5000, webhook_path='/disbots_hook')
 ```
 * This code creates our Client and tells it to auto post stats every 30 minutes, and listens for any incoming requests that notify you about users liking your bot on disbots.gg!
 * The URL we'd put into the text box for "Webhook URL" on the edit page would be `protocol://ourip:5000/disbots_hook`
