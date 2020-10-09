@@ -1,2 +1,2 @@
 from .Client import Client
-from .Exceptions import *
+import .Exceptions as errors
