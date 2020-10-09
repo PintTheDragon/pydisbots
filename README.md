@@ -76,7 +76,9 @@ async def on_disbots_test(data):
 * Returns:
   * A [*ClassyDict*](https://github.com/Iapetus-11/classy-json#how-do-i-use-classy-json) (usable as a normal Python dict) object filled with data from the `/bot/:bot_id` endpoint ([click here for example response](https://docs.disbots.gg/reference/bots))
 * Exceptions that can be raised:
-  * [pydisbots.errors.APIError]()
+  * [pydisbots.errors.**APIError**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsapierror)
+  * [pydisbots.errors.**BotNotFound**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsbotnotfound)
+  * [pydisbots.errors.**InvalidBot**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsinvalidbot)
 <br>
 
 #### *await* pydisbots.Client.**fetch_user_bots**(uid: *int*)
@@ -85,6 +87,10 @@ async def on_disbots_test(data):
   * **uid**: *int* (required) The Discord snowflake id of a user who has bots on disbots.gg
 * Returns:
   * A [*ClassyDict*](https://github.com/Iapetus-11/classy-json#how-do-i-use-classy-json) (usable as a normal Python dict) object filled with data from the `/user/:user_id/bots` endpoint ([click here for example response](https://docs.disbots.gg/reference/users))
+* Exceptions that can be raised:
+  * [pydisbots.errors.**APIError**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsapierror)
+  * [pydisbots.errors.**UserNotFound**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsusernotfound)
+  * [pydisbots.errors.**InvalidUser**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsinvaliduser)
 <br>
 
 #### *await* pydisbots.Client.**post_guild_count**()
@@ -93,6 +99,8 @@ async def on_disbots_test(data):
   * Does not take any arguments
 * Returns:
   * Does not return anything
+* Exceptions that can be raised:
+  * [pydisbots.errors.**APIError**](https://github.com/disbots-gg/pydisbots#pydisbotserrorsapierror)
 <br>
 
 #### *await* pydisbots.Client.**close**()
@@ -101,6 +109,8 @@ async def on_disbots_test(data):
   * Does not take any arguments
 * Returns
   * Does not return anything
+* Exceptions that can be raised:
+  * No **expected** exceptions that can be raised
 <br>
 
 ### Exceptions
