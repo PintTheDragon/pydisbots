@@ -8,7 +8,7 @@ with open('requirements.txt', 'r') as rq:
 
 setuptools.setup(
     name='pydisbots',
-    version='2.0.0',
+    version='2.0.1',
     author='disbots.gg',
     description='An asynchronous wrapper for the disbots.gg API made in Python',
     long_description=long_desc,
