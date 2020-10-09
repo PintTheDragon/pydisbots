@@ -64,7 +64,7 @@ async def on_disbots_test(data):
   * **autopost_stats**: *bool* (optional) Whether or not to auto-post stats to the API
   * **webhook_port**: *int* (optional) What port the webhook listener server will be started on (If it's not passed to the constructor, then no webhook server will be started)
   * **webhook_path**: *str* (optional, defaults to `'/disbots_hook'`) What url to listen for post requests from the webhook server on
-
+<br>
 
 #### *await* pydisbots.Client.**fetch_bot**(bot: *Union[int, str]*)
 * *fetches a bot from disbots.gg via a bot id or bot vanity url*
@@ -74,7 +74,7 @@ async def on_disbots_test(data):
   * A [*ClassyDict*](https://github.com/Iapetus-11/classy-json#how-do-i-use-classy-json) (usable as a normal Python dict) object filled with data from the `/bot/:bot_id` endpoint ([click here for example response](https://docs.disbots.gg/reference/bots))
 * Exceptions that can be raised:
   *
-
+<br>
 
 #### *await* pydisbots.Client.**fetch_user_bots**(uid: *int*)
 * *fetches the bots that are on disbots.gg of a given user*
@@ -82,7 +82,7 @@ async def on_disbots_test(data):
   * **uid**: *int* (required) The Discord snowflake id of a user who has bots on disbots.gg
 * Returns:
   * A [*ClassyDict*](https://github.com/Iapetus-11/classy-json#how-do-i-use-classy-json) (usable as a normal Python dict) object filled with data from the `/user/:user_id/bots` endpoint ([click here for example response](https://docs.disbots.gg/reference/users))
-
+<br>
 
 #### *await* pydisbots.Client.**post_guild_count**()
 * *posts the guild/server count of your bot to the disbots.gg API*
@@ -90,7 +90,7 @@ async def on_disbots_test(data):
   * Does not take any arguments
 * Returns:
   * Does not return anything
-
+<br>
 
 #### *await* pydisbots.Client.**close**()
 * *closes all client connections, sessions, and servers nicely*
@@ -98,34 +98,35 @@ async def on_disbots_test(data):
   * Does not take any arguments
 * Returns
   * Does not return anything
-
+<br>
 
 ### Exceptions
 #### pydisbots.errors.**APIError** - *something went wrong with the disbots.gg API*
 * Attributes:
   * APIError.**debug** *Unknown Type* - *debug information that can be included in the raised exception*
-
+<br>
 
 #### pydisbots.errors.**BotNotFound** - *the bot cannot be found or isn't on disbots.gg*
 * Attributes:
   * **bot** *Union\[int, str\]* - *the argument passed to the [`fetch_bot`](https://github.com/disbots-gg/pydisbots#await-pydisbotsclientfetch_botbot-unionint-str) call*
-
+<br>
 
 #### pydisbots.errors.**InvalidBot** - *the bot is invalid in some way*
 * Attributes:
   * **bot** *Union\[int, str\]* - *the argument passed to the [`fetch_bot`](https://github.com/disbots-gg/pydisbots#await-pydisbotsclientfetch_botbot-unionint-str) call*
-
+<br>
 
 #### pydisbots.errors.**UserNotFound** - *the user doesn't have any bots on disbots.gg*
 * Attributes:
   * **uid** *int* - *the user id passed to the [`fetch_user_bots`](https://github.com/disbots-gg/pydisbots#await-pydisbotsclientfetch_user_botsuid-int) call*
-
+<br>
 
 #### pydisbots.errors.**InvalidUser** - *the user is invalid in some way*
 * Attributes:
   * **uid** *int* - *the user id passed to the [`fetch_user_bots`](https://github.com/disbots-gg/pydisbots#await-pydisbotsclientfetch_user_botsuid-int) call*
-
+<br>
 
 #### pydisbots.errors.**UnauthorizedError** -  *the secret passed to the pydisbots.Client constructor is invalid*
 * Attributes:
   * No attributes
+<br>
