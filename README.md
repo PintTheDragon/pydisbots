@@ -12,7 +12,7 @@
 
 ## Examples
 [Example Cog/Extension](https://github.com/disbots-gg/pydisbots/blob/master/examples/discord.py%20example%20cog/disbots.py)
- | 
+ |
 [Example Without Cogs](https://github.com/disbots-gg/pydisbots/blob/master/examples/with%20commands.Bot%20outside%20a%20cog/bot.py)
 
 ## Quick Start! (For setting up webhooks + auto-posting stats)
@@ -65,7 +65,7 @@ async def on_disbots_test(data):
   * **webhook_port**: *int* (optional) What port the webhook listener server will be started on (If it's not passed to the constructor, then no webhook server will be started)
   * **webhook_path**: *str* (optional, defaults to `'/disbots_hook'`) What url to listen for post requests from the webhook server on
 
-##### *await* pydisbots.Client.**fetch_bot**(bot: *Union[int, str]*)
+#### *await* pydisbots.Client.**fetch_bot**(bot: *Union[int, str]*)
 * *fetches a bot from disbots.gg via a bot id or bot vanity url*
 * Arguments:
   * **bot**: *Union[int, str]* (required) Takes either a Discord snowflake id of a bot or the vanity url of a bot that is on disbots.gg
