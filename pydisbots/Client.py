@@ -3,6 +3,9 @@ import classyjson as cj
 import asyncio
 import aiohttp
 import discord
+import hashlib
+import hmac
+import json
 
 from .Exceptions import *
 
@@ -38,7 +41,7 @@ class Client:
 
     async def _webhook_listener(self):
         async def handler(req):
-            if req.headers.get('Authorization') != self.secret:
+            if req.headers.get('Authorization') != hmac.new(bytes(self.secret, 'utf-8'), bytes(await request.text(), 'utf-8'), hashlib.sha256).hexdigest():
                 return web.Response(status=401)
 
             data = cj.classify(await req.json())
@@ -126,11 +129,12 @@ class Client:
         if self.verbose:
             print('Posting stats to the API')
 
-        headers = {'Authorization': self.secret}
-        data = {'servers': str(len(self.bot.guilds))}
+        jsonData = {'servers': str(len(self.bot.guilds))}
+        data = json.dumps(json);
+        headers = {'Authorization': hmac.new(bytes(self.secret, 'utf-8'), bytes(data, 'utf-8'), hashlib.sha256).hexdigest(), 'Content-Type': 'application/json'}
 
         try:
-            resp = await self.ses.put(f'{base_url}/api/stats', headers=headers, json=data)
+            resp = await self.ses.put(f'{base_url}/api/stats', headers=headers, data=data)
         except Exception as e:
             raise APIError(e)
 
